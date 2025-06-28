@@ -65,3 +65,8 @@ sed -i \
     /operationId/!ba
     d
 }' "${BASE_DIR}/temp/openapi_v3.yml"
+
+# Fix type array.
+# Assume array type that contains list description.
+yq '.paths[].*.responses.* |= select(.description | test("list|tree")) |= select(. | has("content")) |= .content[] |= select(.schema.type != "array") |= .schema = {"type": "array", "items": .schema}'  < "${BASE_DIR}/temp/openapi_v3.yml" > "${BASE_DIR}/temp/openapi_v3_fixed.yml"
+mv -f "${BASE_DIR}/temp/openapi_v3_fixed.yml" "${BASE_DIR}/temp/openapi_v3.yml"

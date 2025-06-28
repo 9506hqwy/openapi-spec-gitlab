@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-VERSION=v18.1.0-ee
+VERSION=v18.1.1-ee
 
 BASE_DIR=$(dirname "$(dirname "$0")")
 TMP_DIR=/tmp

@@ -1,0 +1,17 @@
+extends:
+  - recommended
+rules:
+  info-license:
+    severity: off
+  no-ambiguous-paths:
+    severity: off
+  no-unused-components:
+    severity: off
+  operation-2xx-response:
+    severity: off
+  operation-4xx-response:
+    severity: off
+  operation-summary:
+    severity: off
+  security-defined:
+    severity: off

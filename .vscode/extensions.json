@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "42crunch.vscode-openapi",
+        "davidanson.vscode-markdownlint",
+        "editorconfig.editorconfig",
+        "redhat.vscode-yaml",
+        "timonwong.shellcheck",
+        "yzhang.markdown-all-in-one"
+    ]
+}

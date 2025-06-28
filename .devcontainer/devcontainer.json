@@ -16,11 +16,23 @@
     "containerEnv": {
         "UV_LINK_MODE": "copy"
     },
+    // Add features.
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {}
+    },
     // Use 'onCreateCommand' to run commands after the container is created.
     "onCreateCommand": "${containerWorkspaceFolder}/.devcontainer/on-create.sh",
     // Uncomment to connect as root instead.
     //"remoteUser": "root",
     // Use default container `USER`,
     // because of avoid reject directory creating by container startup user.
-    "containerUser": "node"
+    "containerUser": "node",
+    // Customize vscode.
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": ".venv/bin/python"
+            }
+        }
+    }
 }

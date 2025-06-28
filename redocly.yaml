@@ -11,6 +11,8 @@ rules:
     severity: off
   operation-4xx-response:
     severity: off
+  operation-operationId:
+    severity: off
   operation-summary:
     severity: off
   security-defined:

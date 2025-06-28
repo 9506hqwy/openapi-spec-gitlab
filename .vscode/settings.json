@@ -8,6 +8,14 @@
         },
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "ruff.organizeImports": true,
     "yaml.maxItemsComputed": 30000,
     "yaml.schemaStore.enable": false
 }

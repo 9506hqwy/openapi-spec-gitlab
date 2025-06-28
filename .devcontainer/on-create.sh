@@ -47,3 +47,7 @@ npm install @redocly/cli -g
 
 # Install uv
 curl -fsSL -o - "https://astral.sh/uv/install.sh" | sh
+
+# Setup environment
+uv venv
+uv pip install -r requirements.txt

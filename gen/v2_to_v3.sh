@@ -24,7 +24,7 @@ sed -i -e 's/type: text/type: string/' "${TMP_DIR}/openapi_v2.yml"
 sed -i -e 's/type: symbol/type: string/' "${TMP_DIR}/openapi_v2.yml"
 
 # Convert Swagger 2.0 to OpenAPI 3.0.
-swagger2openapi -y -o "${TMP_DIR}/openapi_v3.yml" "${TMP_DIR}/openapi_v2.yml"
+swagger2openapi -y -o "${BASE_DIR}/temp/openapi_v3.yml" "${TMP_DIR}/openapi_v2.yml"
 
 # Remove API that contains '()' at URI.
 sed -i \
@@ -34,7 +34,7 @@ sed -i \
     N
     /operationId/!ba
     d
-}' "${TMP_DIR}/openapi_v3.yml"
+}' "${BASE_DIR}/temp/openapi_v3.yml"
 
 # Remove API that contains response that has `@id` and `id`.
 sed -i \
@@ -43,28 +43,25 @@ sed -i \
     N
     /operationId/!ba
     d
-}' "${TMP_DIR}/openapi_v3.yml"
+}' "${BASE_DIR}/temp/openapi_v3.yml"
 sed -i \
     -e '/^  "\/api\/v4\/groups\/{id}\/-\/packages\/nuget\/metadata\/\*package_name\/\*package_version"/{
     :a
     N
     /operationId/!ba
     d
-}' "${TMP_DIR}/openapi_v3.yml"
+}' "${BASE_DIR}/temp/openapi_v3.yml"
 sed -i \
     -e '/^  "\/api\/v4\/projects\/{id}\/packages\/nuget\/metadata\/\*package_name\/index"/{
     :a
     N
     /operationId/!ba
     d
-}' "${TMP_DIR}/openapi_v3.yml"
+}' "${BASE_DIR}/temp/openapi_v3.yml"
 sed -i \
     -e '/^  "\/api\/v4\/projects\/{id}\/packages\/nuget\/metadata\/\*package_name\/\*package_version"/{
     :a
     N
     /operationId/!ba
     d
-}' "${TMP_DIR}/openapi_v3.yml"
-
-# Re-format
-redocly bundle -d --remove-unused-components -o "${BASE_DIR}/openapi.yml" "${TMP_DIR}/openapi_v3.yml"
+}' "${BASE_DIR}/temp/openapi_v3.yml"

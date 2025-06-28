@@ -1,8 +1,11 @@
 {
     "recommendations": [
         "42crunch.vscode-openapi",
+        "charliermarsh.ruff",
         "davidanson.vscode-markdownlint",
         "editorconfig.editorconfig",
+        "ms-python.python",
+        "ms-python.mypy-type-checker",
         "redhat.vscode-yaml",
         "timonwong.shellcheck",
         "yzhang.markdown-all-in-one"

@@ -27,14 +27,12 @@ sed -i -e 's/type: symbol/type: string/' "${TMP_DIR}/openapi_v2.yml"
 swagger2openapi -y -o "${BASE_DIR}/temp/openapi_v3.yml" "${TMP_DIR}/openapi_v2.yml"
 
 # Remove API that contains '()' at URI.
-sed -i \
-    -e '/^  "/{
-    /\\(/!b
-    :a
-    N
-    /operationId/!ba
-    d
-}' "${BASE_DIR}/temp/openapi_v3.yml"
+yq 'del(.paths[] | select(. | key | select(. | contains("\\("))))' < "${BASE_DIR}/temp/openapi_v3.yml" > "${BASE_DIR}/temp/openapi_v3_fixed.yml"
+mv -f "${BASE_DIR}/temp/openapi_v3_fixed.yml" "${BASE_DIR}/temp/openapi_v3.yml"
+
+# Remove API that contains asterisk in path.
+yq 'del(.paths[] | select(. | key | select(. | contains("*"))))' < "${BASE_DIR}/temp/openapi_v3.yml" > "${BASE_DIR}/temp/openapi_v3_fixed.yml"
+mv -f "${BASE_DIR}/temp/openapi_v3_fixed.yml" "${BASE_DIR}/temp/openapi_v3.yml"
 
 # Remove API that contains response that has `@id` and `id`.
 sed -i \

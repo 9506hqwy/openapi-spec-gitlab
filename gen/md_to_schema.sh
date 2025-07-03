@@ -27,3 +27,7 @@ sed -i -e 's/type: hash/type: string/' "${BASE_DIR}/temp/issues.yml"
 # https://swagger.io/specification/v2/#parameter-object
 # The value MUST be one of "string", "number", "integer", "boolean", "array" or "file".
 sed -i -e 's/type: integer\/string/type: string/' "${BASE_DIR}/temp/issues.yml"
+
+# https://swagger.io/specification/v2/#parameter-object
+# The value MUST be one of "string", "number", "integer", "boolean", "array" or "file".
+sed -i -e 's/type: file/type: string/' "${BASE_DIR}/temp/issues.yml"

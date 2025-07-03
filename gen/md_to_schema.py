@@ -231,7 +231,7 @@ def conv_path(
     parameters: list[Parameter],
     request: list[Attribute],
     response: dict[str, Any],
-) -> dict[str, Any]:
+) -> tuple[str, Any]:
     path = f"/api/v4{path}"
     method = method.lower()
 
@@ -313,7 +313,7 @@ def conv_path(
             },
         }
 
-    return operation
+    return list(operation.items())[0]
 
 
 operations: dict[str, Any] = {}
@@ -325,7 +325,10 @@ for operation in parse_operations(sys.argv[1]):
     params, body = parse_parameter(operation.attribute, paths, forms)
     response = parse_example_response(operation.example_response)
 
-    op = conv_path(path, method, operation.title, params, body, response)
-    operations |= op
+    (key, value) = conv_path(path, method, operation.title, params, body, response)
+    if key in operations:
+        operations[key] |= value
+    else:
+        operations[key] = value
 
 print(json.dumps({"paths": operations}))

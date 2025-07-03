@@ -51,9 +51,13 @@ def get_title(node) -> str:
 
 
 def find_first_text(node) -> str | None:
+    content = ""
     for text in node.walk(include_self=False):
         if text.type == "text" or text.type == "code_inline":
-            return text.content
+            content += text.content
+
+    if content:
+        return content.strip()
 
     return None
 

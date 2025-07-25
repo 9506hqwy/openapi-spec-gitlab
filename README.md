@@ -23,7 +23,7 @@ yq '.paths = .paths + (load("./temp/issues.yml") | .paths)' ./temp/openapi_v3.ym
 Bundle one file.
 
 ```sh
-redocly bundle -d --remove-unused-components -o openapi.yml ./temp/openapi.yml
+redocly bundle -d --remove-unused-components ./temp/openapi.yml | yq 'explode(.)' > openapi.yml
 ```
 
 Verify OpenAPI schema format.
